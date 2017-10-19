@@ -15,7 +15,13 @@ $(document).ready(function(){
 
   $('#submit').on('click', function(event){
     event.preventDefault();
-    console.log('I get here')
+
+    var name = $('#train-name-input').val().trim();
+    var destination = $('#destination-input').val().trim();
+    var firstTrain = $('#first-train-input').val().trim();
+    var frequency = $('#frequency-input').val().trim();
+
+    console.log(name, destination, firstTrain, frequency);
   })
 
 })
