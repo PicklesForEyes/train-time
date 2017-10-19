@@ -13,5 +13,9 @@ $(document).ready(function(){
 
   var database = firebase.database();
 
+  $('#submit').on('click', function(event){
+    event.preventDefault();
+    console.log('I get here')
+  })
 
 })
