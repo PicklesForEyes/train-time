@@ -21,7 +21,22 @@ $(document).ready(function(){
     var firstTrain = $('#first-train-input').val().trim();
     var frequency = $('#frequency-input').val().trim();
 
-    console.log(name, destination, firstTrain, frequency);
+    if(name.length && destination.length && firstTrain.length && frequency.length){
+      console.log(name, destination, firstTrain, frequency);
+
+      database.ref().push({
+        trainName: name,
+        trainDestination: destination,
+        trainStart: firstTrain,
+        trainFrequency: frequency
+      })
+    } else {
+      console.log('One is too short')
+    }
+  })
+
+  database.ref().on('child_added', function(snapshot){
+    
   })
 
 })
