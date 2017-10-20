@@ -43,20 +43,21 @@ $(document).ready(function(){
     var startingTime = moment(moment().format('YYYYMMDD'))
     startingTime.add(hours, 'hours').add(minutes, 'minutes');
 
+    var nextTrainInMinutes = moment().diff(startingTime, 'minutes') % value.trainFrequency;
+    nextTrainInMinutes = nextTrainInMinutes - value.trainFrequency;
+    nextTrainInMinutes = nextTrainInMinutes * -1;
+
+    var nextTrainArrival = moment().add(nextTrainInMinutes, 'minutes')
 
     if(moment().diff(startingTime) < 0){
       $('#firebase-table').append(
         '<tr><td>' + value.trainName +
         '</td><td>' + value.trainDestination +
         '</td><td>' + value.trainFrequency +
-        '</td><td>Train isn\'t running</td><td>N/A</td></tr>'
+        '</td><td>First Train at ' + startingTime.format('h:mma') +
+        '</td><td>' + nextTrainInMinutes + '</td></tr>'
         )
     } else {
-      var nextTrainInMinutes = moment().diff(startingTime, 'minutes') % value.trainFrequency;
-      nextTrainInMinutes = nextTrainInMinutes - value.trainFrequency;
-      nextTrainInMinutes = nextTrainInMinutes * -1;
-
-      var nextTrainArrival = moment().add(nextTrainInMinutes, 'minutes')
 
       $('#firebase-table').append(
         '<tr><td>' + value.trainName +
