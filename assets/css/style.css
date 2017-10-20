@@ -1,7 +1,30 @@
 body {
   font-family: 'Montserrat';
+  background-color: #5ea2cf;
 }
 
 thead {
   font-weight: bold;
+}
+
+.jumbotron {
+  background-color: #eff700;
+  color: black;
+}
+
+.panel-default {
+  opacity: .8;
+}
+
+img {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  z-index: -1;
+}
+
+@media only screen and (min-width: 1600px){
+  img {
+    bottom: -5%;
+  }
 }
