@@ -28,6 +28,7 @@ $(document).ready(function(){
         trainStart: firstTrain,
         trainFrequency: frequency
       })
+      $('#train-name-input, #destination-input, #first-train-input, #frequency-input').val('')
     } else {
       console.log('One is too short')
     }
