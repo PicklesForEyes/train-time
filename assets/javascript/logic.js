@@ -48,6 +48,7 @@ $(document).ready(function(){
     nextTrainInMinutes = nextTrainInMinutes * -1;
 
     var nextTrainArrival = moment().add(nextTrainInMinutes, 'minutes')
+    var first = moment().diff(startingTime, 'minutes') * -1 +1;
 
     if(moment().diff(startingTime) < 0){
       $('#firebase-table').append(
@@ -55,7 +56,7 @@ $(document).ready(function(){
         '</td><td>' + value.trainDestination +
         '</td><td>' + value.trainFrequency +
         '</td><td>First Train at ' + startingTime.format('h:mma') +
-        '</td><td>' + nextTrainInMinutes + '</td></tr>'
+        '</td><td>' + first + '</td></tr>'
         )
     } else {
 
