@@ -8,12 +8,26 @@ thead {
 }
 
 .jumbotron {
-  background-color: #eff700;
-  color: black;
+  background-color: #2e4f52;
+  color: #bbb;
 }
 
 .panel-default {
   opacity: .8;
+}
+
+.panel-default > .panel-heading {
+  background-color: #2e4f52;
+  border-color: #2e4f52;
+  color: #fff;
+}
+
+.panel-default {
+  border-color: #2e4f52;
+}
+
+.panel-heading small {
+  color: #bbb;
 }
 
 img {
