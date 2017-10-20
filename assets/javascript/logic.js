@@ -22,21 +22,33 @@ $(document).ready(function(){
     var frequency = $('#frequency-input').val().trim();
 
     if(name.length && destination.length && firstTrain.length && frequency.length){
-      console.log(name, destination, firstTrain, frequency);
-
-      database.ref().push({
-        trainName: name,
-        trainDestination: destination,
-        trainStart: firstTrain,
-        trainFrequency: frequency
-      })
+      // database.ref().push({
+      //   trainName: name,
+      //   trainDestination: destination,
+      //   trainStart: firstTrain,
+      //   trainFrequency: frequency
+      // })
     } else {
       console.log('One is too short')
     }
   })
 
   database.ref().on('child_added', function(snapshot){
-    
+    var value = snapshot.val()
+
+    var starting = value.trainStart.split(':');
+    var hours = starting[0];
+    var minutes = starting[1];
+    var startingTime = moment(moment().format('YYYYMMDD'))
+    startingTime.add(hours, 'hours').add(minutes, 'minutes');
+
+
+
+    $('#firebase-table').append(
+      '<tr><td>' + value.trainName +
+      '</td><td>' + value.trainDestination +
+      '</td><td>' + value.trainFrequency + '</td></tr>'
+      )
   })
 
 })
