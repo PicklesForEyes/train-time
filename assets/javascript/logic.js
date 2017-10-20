@@ -22,12 +22,12 @@ $(document).ready(function(){
     var frequency = $('#frequency-input').val().trim();
 
     if(name.length && destination.length && firstTrain.length && frequency.length){
-      // database.ref().push({
-      //   trainName: name,
-      //   trainDestination: destination,
-      //   trainStart: firstTrain,
-      //   trainFrequency: frequency
-      // })
+      database.ref().push({
+        trainName: name,
+        trainDestination: destination,
+        trainStart: firstTrain,
+        trainFrequency: frequency
+      })
     } else {
       console.log('One is too short')
     }
@@ -43,12 +43,28 @@ $(document).ready(function(){
     startingTime.add(hours, 'hours').add(minutes, 'minutes');
 
 
+    if(moment().diff(startingTime) < 0){
+      $('#firebase-table').append(
+        '<tr><td>' + value.trainName +
+        '</td><td>' + value.trainDestination +
+        '</td><td>' + value.trainFrequency +
+        '</td><td>Train isn\'t running</td><td>N/A</td></tr>'
+        )
+    } else {
+      var nextTrainInMinutes = moment().diff(startingTime, 'minutes') % value.trainFrequency;
+      nextTrainInMinutes = nextTrainInMinutes - value.trainFrequency;
+      nextTrainInMinutes = nextTrainInMinutes * -1;
 
-    $('#firebase-table').append(
-      '<tr><td>' + value.trainName +
-      '</td><td>' + value.trainDestination +
-      '</td><td>' + value.trainFrequency + '</td></tr>'
-      )
+      var nextTrainArrival = moment().add(nextTrainInMinutes, 'minutes')
+
+      $('#firebase-table').append(
+        '<tr><td>' + value.trainName +
+        '</td><td>' + value.trainDestination +
+        '</td><td>' + value.trainFrequency +
+        '</td><td>' + nextTrainArrival.format('hh:mma') +
+        '</td><td>' + nextTrainInMinutes + '</td></tr>'
+        )
+    }
   })
 
 })
