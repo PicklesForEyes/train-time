@@ -62,7 +62,7 @@ $(document).ready(function(){
         '<tr><td>' + value.trainName +
         '</td><td>' + value.trainDestination +
         '</td><td>' + value.trainFrequency +
-        '</td><td>' + nextTrainArrival.format('hh:mma') +
+        '</td><td>' + nextTrainArrival.format('h:mma') +
         '</td><td>' + nextTrainInMinutes + '</td></tr>'
         )
     }
